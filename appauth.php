@@ -1,11 +1,9 @@
 <?php
 
-include './cors.php';
-
-session_start();
-
 ini_set('session.gc_maxlifetime', 400);
 ini_set('session.cookie_lifetime', 0); // erase session cookie to zero when browser is closed
+
+session_start();
 
 if (!isset($_SESSION['userid'])) {
 
@@ -17,7 +15,7 @@ if (!isset($_SESSION['userid'])) {
         $passcode = $_POST['passcode'];
         $userstatus = 1;
 
-        $apiresponse = ValidateAuth($email, $password, $userstatus, $dbconnect);
+        $apiresponse = ValidateAuth($email, $passcode, $userstatus, $dbconnect);
 
         echo json_encode($apiresponse);
     }
